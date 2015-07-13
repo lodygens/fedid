@@ -42,14 +42,14 @@ This file may be found from :
 
 You may need to set some variables in the configuration file.
 
-Goal             | Name        |  Requirement | Comments  | Default
------------------|-------------|--------------|-----------|--------
-Logger level     | loggerlevel |  *Optionnal*   | Possible values: ``finest``, ``debug``, ``config``, ``info``, ``warn``, ``error``, ``fatal`` | info
-Path containing CA certificates| cacertpath  | *Optionnal*  | If not set, users won't be able to authenticate using X509 certificates | n/a
-Server certificate path | certpath | **Required** | | n/a
-Server private key path | keypath | **Required** | | n/a
-HTTPS port to listen| portnumber  |  *Optionnal*   |           | 4325
-An array containing OAuth servers configuration | OAuthServers | *Optionnal* | | n/a
+Goal             | Name        |  Requirement | Comments
+-----------------|-------------|--------------|---------
+Logger level     | loggerlevel |  *Optionnal*   | Possible values: ``finest``, ``debug``, ``config``, ``info``, ``warn``, ``error``, ``fatal``
+Path containing CA certificates| cacertpath  | *Optionnal*  | If not set, users won't be able to authenticate using X509 certificates
+Server certificate path | certpath | **Required** |
+Server private key path | keypath | **Required** |
+HTTPS port to listen| portnumber  |  *Optionnal*   |
+An array containing OAuth servers configuration | OAuthServers | *Optionnal* |
 
 
 The "OAuthServers" variable is an array containing OAuth server configurations.
