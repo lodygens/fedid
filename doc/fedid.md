@@ -52,8 +52,10 @@ Path containing CA certificates| cacertpath  | *Optionnal*  | If not set, users 
 Server certificate path | certpath | **Required** | Program exits, if not set (see [server keys](#server-keys))
 Server private key path | keypath | **Required** | Program exits, if not set (see [server keys](#server-keys))
 Listened HTTPS port | portnumber  |  *Optionnal*   | Default: 4325
-An array containing OAuth servers configuration | OAuthServers | *Optionnal* | If not set, users won't be able to authenticate using any external OAuth server
+An array containing OAuth servers configuration | OAuthServers | *Optionnal* | If not set, users won't be able to authenticate using any external OAuth server (see [OAuth server](#oauth-server)
 
+
+### OAuth server
 
 The "OAuthServers" variable is an array containing OAuth server configurations.
 All OAuth server configuration variables are **required** and come from the OAuth server console, but **name**. That last must be set but its content is free.  
@@ -82,29 +84,6 @@ https://myserver:myPort/aPath/google
 https://myserver:myPort/google
 https://myserver/aPath/google
 https://myserver/google
-```
-
-
-### Configuration example
-
-```
-{
-	"loggerlevel"      : "debug",
-	"cacertpath"         : "",
-	"certpath"         : "",
-	"keypath"          : "",
-	"portNumber"       : "",
-	"OAuthServers" : [
-		{
- 			"name"         : "google", 
- 			"clientid"     : "",
-			"clientsecret" : "",
-			"redirecturl"  : "https://something/path/google",
-			"authurl"      : "https://accounts.google.com/o/oauth2/auth",
-			"tokenurl"     : "https://accounts.google.com/o/oauth2/token"
-		}
-	]
-}
 ```
 
 ### Certification Authorities 
@@ -137,3 +116,25 @@ This generates two files
 * cert.pem
 * key.pem
 
+
+### Configuration example
+
+```
+{
+	"loggerlevel"      : "debug",
+	"cacertpath"         : "",
+	"certpath"         : "",
+	"keypath"          : "",
+	"portNumber"       : "",
+	"OAuthServers" : [
+		{
+ 			"name"         : "google", 
+ 			"clientid"     : "",
+			"clientsecret" : "",
+			"redirecturl"  : "https://something/path/google",
+			"authurl"      : "https://accounts.google.com/o/oauth2/auth",
+			"tokenurl"     : "https://accounts.google.com/o/oauth2/token"
+		}
+	]
+}
+```
