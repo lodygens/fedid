@@ -49,8 +49,8 @@ Goal             | Name        |  Requirement | Comments
 -----------------|-------------|--------------|---------
 Logger level     | loggerlevel |  *Optionnal*   | Possible values: ``finest``, ``debug``, ``config``, ``info`` (**default**), ``warn``, ``error``, ``fatal``
 Path containing CA certificates| cacertpath  | *Optionnal*  | If not set, users won't be able to authenticate using X509 certificate
-Server certificate path | certpath | **Required** | Program exits, if not set
-Server private key path | keypath | **Required** | Program exits, if not set
+Server certificate path | certpath | **Required** | Program exits, if not set (see [server keys](#server-electronic-keys))
+Server private key path | keypath | **Required** | Program exits, if not set (see [server keys](#server-electronic-keys))
 Listened HTTPS port | portnumber  |  *Optionnal*   | Default: 4325
 An array containing OAuth servers configuration | OAuthServers | *Optionnal* | If not set, users won't be able to authenticate using any external OAuth server
 
@@ -107,7 +107,7 @@ https://myserver/google
 }
 ```
 
-## Server electronic keys
+### Server electronic keys
 
 The application launches a secured Web server.
 To do so, a electronic keys pair is expected to:
