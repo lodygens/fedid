@@ -45,11 +45,11 @@ You may need to set some variables in the configuration file.
 Goal             | Name        |  Requirement | Values    | Default
 -----------------|-------------|--------------|-----------|--------
 Logger level     | loggerlevel |  *Optionnal*   | finest, debug, config, info, warn, error, fatal | info
-Path containing CA certificates| cacertpath  |  Optionnal   |           | n/a
+Path containing CA certificates| cacertpath  | *Optionnal*  |           | n/a
 Server certificate path | certpath | **Required** | | n/a
 Server private key path | keypath | **Required** | | n/a
 HTTPS port to listen| portnumber  |  *Optionnal*   |           | 4325
-	"OAuthServers" : [
+An array containing OAuth servers configuration | OAuthServers | *Optionnal* | | n/a
 		{
  			"name"         : "google", 
  			"clientid"     : "",
