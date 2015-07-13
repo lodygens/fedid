@@ -57,7 +57,7 @@ An array containing OAuth servers configuration | OAuthServers | *Optionnal* | I
 
 
 The "OAuthServers" variable is an array containing OAuth server configurations.
-All OAuth server configuration variables are **required** and come from the OAuth server console (expect name). 
+All OAuth server configuration variables are **required** and come from the OAuth server console, but **name**. That last must be set but its content is free.  
 
 As example, one can find detailed instructions for the [Google OAuth service configuration](https://developers.google.com/identity/protocols/OAuth2/ "Google OAuth service configuration").
 
@@ -73,6 +73,13 @@ OAuth redirection | redirecturl
 OAuth URL         | authurl
 Token URL         |	tokenurl
 
+
+**Please note that name must be used as last path directory in the ``redirecturl`` variable. This is how the application retrieve the OAuth server to use.**
+
+Example:
+if name is ``google``, then the redirect URL must
+
+
 ### Configuration example
 
 ```
@@ -87,7 +94,7 @@ Token URL         |	tokenurl
  			"name"         : "google", 
  			"clientid"     : "",
 			"clientsecret" : "",
-			"redirecturl"  : "",
+			"redirecturl"  : "https://something/path/google",
 			"authurl"      : "https://accounts.google.com/o/oauth2/auth",
 			"tokenurl"     : "https://accounts.google.com/o/oauth2/token"
 		}
