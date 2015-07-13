@@ -44,12 +44,12 @@ You may need to set some variables in the configuration file.
 
 Goal             | Name        |  Requirement | Comments
 -----------------|-------------|--------------|---------
-Logger level     | loggerlevel |  *Optionnal*   | Possible values: ``finest``, ``debug``, ``config``, ``info`` (**default value**), ``warn``, ``error``, ``fatal``
-Path containing CA certificates| cacertpath  | *Optionnal*  | If not set, users won't be able to authenticate using X509 certificates
-Server certificate path | certpath | **Required** |
-Server private key path | keypath | **Required** |
-HTTPS port to listen| portnumber  |  *Optionnal*   |
-An array containing OAuth servers configuration | OAuthServers | *Optionnal* |
+Logger level     | loggerlevel |  *Optionnal*   | Possible values: ``finest``, ``debug``, ``config``, ``info`` (**default**), ``warn``, ``error``, ``fatal``
+Path containing CA certificates| cacertpath  | *Optionnal*  | If not set, users won't be able to authenticate using X509 certificate
+Server certificate path | certpath | **Required** | Program exits, if not set
+Server private key path | keypath | **Required** | Program exits, if not set
+HTTPS port to listen| portnumber  |  *Optionnal*   | **Default**: 4325
+An array containing OAuth servers configuration | OAuthServers | *Optionnal* | If not set, users won't be able to authenticate using an external OAuth server
 
 
 The "OAuthServers" variable is an array containing OAuth server configurations.
