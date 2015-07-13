@@ -48,7 +48,7 @@ Some variables may be set in the configuration file.
 Goal             | Name        |  Requirement | Comments
 -----------------|-------------|--------------|---------
 Logger level     | loggerlevel |  *Optionnal*   | Possible values: ``finest``, ``debug``, ``config``, ``info`` (**default**), ``warn``, ``error``, ``fatal``
-Path containing CA certificates| cacertpath  | *Optionnal*  | If not set, users won't be able to authenticate using X509 certificate
+Path containing CA certificates| cacertpath  | *Optionnal*  | If not set, users won't be able to authenticate using X509 certificate (see [certification-authorities](#certification-authorities))
 Server certificate path | certpath | **Required** | Program exits, if not set (see [server keys](#server-keys))
 Server private key path | keypath | **Required** | Program exits, if not set (see [server keys](#server-keys))
 Listened HTTPS port | portnumber  |  *Optionnal*   | Default: 4325
@@ -116,7 +116,7 @@ In order to verify user credentials presented as an electronic certificate, a se
 Most well known certificate paths are usually preinstalled in end user applications, such as web browsers.
 If expected, specific certificate paths may be downloaded from certificate authority.
 
-E.G.: CNRS CA proposes its certificate paths at [IGC CNRS](https://igc.services.cnrs.fr/search_CA_certificate/?CA=CNRS2-Standard&lang=fr&body=view_ca.html "IGC CNRS").
+E.G.: CNRS CA proposes its certificate path at [IGC CNRS](https://igc.services.cnrs.fr/search_CA_certificate/?CA=CNRS2-Standard&lang=fr&body=view_ca.html "IGC CNRS").
   
 
 ### Server keys
