@@ -77,7 +77,11 @@ Token URL         |	tokenurl
 **Please note that name must end the ``redirecturl`` variable. This is how the application retrieve the OAuth server to use.**
 
 Example:
-if name is ``google``, then the redirect URL must
+if name is ``google``, then the redirect URL must end with ``/google``. It must be something like 
+```
+https://myserver:myPort/aPath/google
+https://myserver:myPort/google
+```
 
 
 ### Configuration example
