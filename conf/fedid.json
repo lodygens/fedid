@@ -1,0 +1,18 @@
+{
+	"loggerlevel"      : "debug",
+	"cacertpath"         : "",
+	"certpath"         : "",
+	"keypath"          : "",
+	"portNumber"       : "",
+	"OAuthServers" : [
+		{
+ 			"name"         : "google", 
+ 			"clientid"     : "",
+			"clientsecret" : "",
+			"redirecturl"  : "",
+			"authurl"      : "https://accounts.google.com/o/oauth2/auth",
+			"tokenurl"     : "https://accounts.google.com/o/oauth2/token"
+		}
+	]
+}
+
