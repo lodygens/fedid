@@ -45,9 +45,7 @@ You may need to set some variables in the configuration file.
 Goal             | Name        |  Requirement | Values    | Default
 -----------------|-------------|--------------|-----------|--------
 Logger level     | loggerlevel |  Optionnal   | finest, debug, config, info, warn, error, fatal | info
-
 Path containing CA certificates| cacertpath  |  Optionnal   |           | ""
-
 Server certificate path | certpath"         : "",
 	"keypath"          : "",
 	"portNumber"       : "",
