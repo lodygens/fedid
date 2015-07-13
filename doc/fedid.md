@@ -59,7 +59,7 @@ An array containing OAuth servers configuration | OAuthServers | *Optionnal* | I
 The "OAuthServers" variable is an array containing OAuth server configurations.
 All OAuth server configuration variables are **required** and come from the OAuth server console (expect name). 
 
-As example, one can find detailed instructions to use [Google OAuth service configuration](https://developers.google.com/identity/protocols/OAuth2/ "Google OAuth service configuration")
+As example, one can find detailed instructions for the [Google OAuth service configuration](https://developers.google.com/identity/protocols/OAuth2/ "Google OAuth service configuration")
 
 
 OAuth server configuration variables are listed below.
