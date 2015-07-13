@@ -50,6 +50,29 @@ Server certificate path | certpath | **Required** | | n/a
 Server private key path | keypath | **Required** | | n/a
 HTTPS port to listen| portnumber  |  *Optionnal*   |           | 4325
 An array containing OAuth servers configuration | OAuthServers | *Optionnal* | | n/a
+
+
+OAuth server configuration variables. All variables are **required**.
+
+Goal              | Name        
+------------------|-------------
+Server name       | name 
+Client identifier | clientid 
+Client secret     | clientsecret
+OAuth redirection | redirecturl
+OAuth URL         | authurl
+Token URL         |	tokenurl
+
+### Configuration example
+
+```
+{
+	"loggerlevel"      : "debug",
+	"cacertpath"         : "",
+	"certpath"         : "",
+	"keypath"          : "",
+	"portNumber"       : "",
+	"OAuthServers" : [
 		{
  			"name"         : "google", 
  			"clientid"     : "",
@@ -59,3 +82,5 @@ An array containing OAuth servers configuration | OAuthServers | *Optionnal* | |
 			"tokenurl"     : "https://accounts.google.com/o/oauth2/token"
 		}
 	]
+}
+```
