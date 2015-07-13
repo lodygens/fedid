@@ -79,7 +79,7 @@ Token URL         |	tokenurl
 Example:
 if name is ``google``, then the redirect URL must end with ``/google``. It must be something like 
 ```
-https://myserver:myPort/aPath/google
+https://myserver:myPort/aPath/**google**
 https://myserver:myPort/google
 ```
 
