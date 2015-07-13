@@ -25,3 +25,9 @@ Acknowledgements
 This software originated in the Cyclone project that was co-funded
 by the European Community’s Seventh Framework Programme (Capacities)
 Grant Agreement H2020-IA-644925, started in Jan 2015
+
+
+Documentation
+=============
+
+[Documentation](docs/fedid.md)
