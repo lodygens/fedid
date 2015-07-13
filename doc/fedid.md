@@ -74,7 +74,7 @@ OAuth URL         | authurl
 Token URL         |	tokenurl
 
 
-**Please note that name must be used as last path directory in the ``redirecturl`` variable. This is how the application retrieve the OAuth server to use.**
+**Please note that name must ends the ``redirecturl`` variable. This is how the application retrieve the OAuth server to use.**
 
 Example:
 if name is ``google``, then the redirect URL must
