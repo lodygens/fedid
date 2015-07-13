@@ -53,7 +53,7 @@ An array containing OAuth servers configuration | OAuthServers | *Optionnal* | |
 
 
 The "OAuthServers" variable is an array containing OAuth server configurations.
-All OAuth server configuration variables variables are **required** and listed below
+All OAuth server configuration variables are **required** and listed below
 
 Goal              | Name        
 ------------------|-------------
