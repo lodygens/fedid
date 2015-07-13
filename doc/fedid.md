@@ -53,11 +53,15 @@ Path containing CA certificates| cacertpath  | *Optionnal*  | If not set, users 
 Server certificate path | certpath | **Required** | Program exits, if not set
 Server private key path | keypath | **Required** | Program exits, if not set
 Listened HTTPS port | portnumber  |  *Optionnal*   | Default: 4325
-An array containing OAuth servers configuration | OAuthServers | *Optionnal* | If not set, users won't be able to authenticate using an external OAuth server
+An array containing OAuth servers configuration | OAuthServers | *Optionnal* | If not set, users won't be able to authenticate using any external OAuth server
 
 
 The "OAuthServers" variable is an array containing OAuth server configurations.
-All OAuth server configuration variables are **required** and listed below
+All OAuth server configuration variables are **required** and listed below. 
+They all come from the OAuth server console, but name.
+
+As example, one can find detailed instructions to use [Google OAuth service configuration](https://developers.google.com/identity/protocols/OAuth2/ "Google OAuth service configuration")
+
 
 Goal              | Name        
 ------------------|-------------
