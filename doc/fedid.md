@@ -114,7 +114,7 @@ that may be used to both issue and verify credentials.
 In order to verify user credentials presented as an electronic certificate, a service must have access to the full certificate path.
 
 Most well known certificate paths are usually preinstalled in end user applications, such as web browsers.
-If expected, specific certificate paths may ben downloaded from cetificate authority.
+If expected, specific certificate paths may be downloaded from certificate authority.
 
 E.G.: CNRS CA proposes its certificate paths at [IGC CNRS](https://igc.services.cnrs.fr/search_CA_certificate/?CA=CNRS2-Standard&lang=fr&body=view_ca.html "IGC CNRS").
   
