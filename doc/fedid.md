@@ -81,6 +81,8 @@ if name is ``google``, then the redirect URL must end with ``/google``. It must 
 ```
 https://myserver:myPort/aPath/google
 https://myserver:myPort/google
+https://myserver/aPath/google
+https://myserver/google
 ```
 
 
