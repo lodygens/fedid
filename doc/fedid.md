@@ -28,16 +28,34 @@ $> go get github.com/apexskier/httpauth github.com/gorilla/mux golang.org/x/oaut
 
 
 ## Configuration
-=============
+
 
 This needs a [Json](http://json.org/ "Json") configuration file.
 
-This file may be found:
+This file may be found from :
 
-* from command line parameter. 
-  One can provide the json file path as parameter:
+* command line parameter (e.g.: ``$> fedid /home/user/conf/myconf.json``)
+* ../conf/fedid.json (relative to the binary path)
+* /etc/fedid.json
 
-  ``$> fedid myconf.json``
+### Config variables
 
-* from ../conf/fedid.json (relative to the binary path)
-* from /etc/fedid.json
+You may need to set some variables in the configuration file.
+
+Goal             | Name        |  Requirement | Values    | Default
+-----------------|-------------|--------------|-----------|--------
+Logger level     | loggerlevel |  Optionnal   | finest, debug, config, info, warn, error, fatal | info
+CA cert path     | cacertpath  |  Optionnal   |           | ""
+Certificate path | certpath"         : "",
+	"keypath"          : "",
+	"portNumber"       : "",
+	"OAuthServers" : [
+		{
+ 			"name"         : "google", 
+ 			"clientid"     : "",
+			"clientsecret" : "",
+			"redirecturl"  : "",
+			"authurl"      : "https://accounts.google.com/o/oauth2/auth",
+			"tokenurl"     : "https://accounts.google.com/o/oauth2/token"
+		}
+	]
