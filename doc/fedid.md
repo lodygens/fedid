@@ -44,7 +44,7 @@ You may need to set some variables in the configuration file.
 
 Goal             | Name        |  Requirement | Comments
 -----------------|-------------|--------------|---------
-Logger level     | loggerlevel |  *Optionnal*   | Possible values: ``finest``, ``debug``, ``config``, ``info``, ``warn``, ``error``, ``fatal``
+Logger level     | loggerlevel |  *Optionnal*   | Possible values: ``finest``, ``debug``, ``config``, ``info`` (**default value**), ``warn``, ``error``, ``fatal``
 Path containing CA certificates| cacertpath  | *Optionnal*  | If not set, users won't be able to authenticate using X509 certificates
 Server certificate path | certpath | **Required** |
 Server private key path | keypath | **Required** |
