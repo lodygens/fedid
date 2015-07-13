@@ -16,7 +16,7 @@ Credentials may be:
 ## Requirements
 
 
-This is written in [Go language](http://golang.org/ "Go").
+The application is written in [Go language](http://golang.org/ "Go").
 
 This expects some external packages:
 
@@ -34,7 +34,7 @@ $> go get github.com/apexskier/httpauth github.com/gorilla/mux golang.org/x/oaut
 ## Configuration
 
 
-This needs a [Json](http://json.org/ "Json") configuration file.
+The application needs a [Json](http://json.org/ "Json") configuration file.
 
 This file may be found from :
 
@@ -44,7 +44,7 @@ This file may be found from :
 
 ### Configuration variables
 
-You may need to set some variables in the configuration file.
+Some variables may be set in the configuration file.
 
 Goal             | Name        |  Requirement | Comments
 -----------------|-------------|--------------|---------
