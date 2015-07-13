@@ -36,6 +36,8 @@ This file may be found:
 
 * from command line parameter. 
   One can provide the json file path as parameter:
+
   ``$> fedid myconf.json``
+
 * from ../conf/fedid.json (relative to the binary path)
 * from /etc/fedid.json
