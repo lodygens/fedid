@@ -9,6 +9,10 @@ identity providers.
 This application launches an HTTPS server protecting an ``/apps`` path.
 Users must present valid credentials to access that protected path.
 
+Credentials may be:
+* X509 certificate
+* an external identity provided by an OAuth server
+
 ## Requirements
 
 
