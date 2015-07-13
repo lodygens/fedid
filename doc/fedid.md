@@ -48,7 +48,7 @@ Logger level     | loggerlevel |  *Optionnal*   | Possible values: ``finest``, 
 Path containing CA certificates| cacertpath  | *Optionnal*  | If not set, users won't be able to authenticate using X509 certificate
 Server certificate path | certpath | **Required** | Program exits, if not set
 Server private key path | keypath | **Required** | Program exits, if not set
-HTTPS port to listen| portnumber  |  *Optionnal*   | **Default**: 4325
+Listened HTTPS port | portnumber  |  *Optionnal*   | Default: 4325
 An array containing OAuth servers configuration | OAuthServers | *Optionnal* | If not set, users won't be able to authenticate using an external OAuth server
 
 
