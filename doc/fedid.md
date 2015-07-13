@@ -52,7 +52,7 @@ HTTPS port to listen| portnumber  |  *Optionnal*   |           | 4325
 An array containing OAuth servers configuration | OAuthServers | *Optionnal* | | n/a
 
 
-The "OAuthServers" variable is an array containing OAuth server configuration.
+The "OAuthServers" variable is an array containing OAuth server configurations.
 All OAuth server configuration variables variables are **required** and listed below
 
 Goal              | Name        
