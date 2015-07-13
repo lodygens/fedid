@@ -131,3 +131,9 @@ To generate a self signed key pair, one can run
 ```
 $> go run /usr/local/go/src/crypto/tls/generate_cert.go --host localhost
 ```
+
+This generates two files
+
+* cert.pem
+* key.pem
+
