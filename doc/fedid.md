@@ -1,8 +1,7 @@
 # Identity Federator
 
 
-The Identity federator service permits user connection using different
-identity providers.
+The Identity federator service permits user connection using different identity credentials.
 
 ## Introduction
 
@@ -108,3 +107,15 @@ https://myserver/google
 }
 ```
 
+## Server electronic keys
+
+The application launches a secured Web server.
+To do so, a electronic keys pair is expected to:
+
+* ensure the server identity
+* encrypt communications
+
+To generate a self signed key pair, one can run
+```
+$> go run /usr/local/go/src/crypto/tls/generate_cert.go --host localhost
+```
