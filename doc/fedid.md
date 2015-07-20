@@ -29,6 +29,12 @@ One can easily installs them :
 $> go get github.com/apexskier/httpauth github.com/gorilla/mux golang.org/x/oauth2 
 ```
 
+But all dependencies of `fedid` should have been automatically installed with:
+
+```sh
+$ go get github.com/lodygens/fedid
+```
+
 
 ## Configuration
 
