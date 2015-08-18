@@ -27,6 +27,8 @@ by the European Community’s Seventh Framework Programme (Capacities)
 Grant Agreement H2020-IA-644925, started in Jan 2015
 
 
-[Documentation](doc/fedid.md)
+Documentation
 =============
+
+Please read [the documentation](doc/fedid.md)
 
