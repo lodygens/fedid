@@ -52,13 +52,13 @@ Path containing CA certificates| cacertpath  | *Optionnal*  | If not set, users 
 Server certificate path | certpath | **Required** | Program exits, if not set (see [server keys](#server-keys))
 Server private key path | keypath | **Required** | Program exits, if not set (see [server keys](#server-keys))
 Listened HTTPS port | portnumber  |  *Optionnal*   | Default: 4325
-An array containing OAuth servers configuration | OAuthServers | *Optionnal* | If not set, users won't be able to authenticate using any external OAuth server (see [OAuth server](#oauth-server)
+An array containing OAuth servers configuration | OAuthServers | *Optionnal* | If not set, users won't be able to authenticate using any external OAuth server (see [OAuth server](#oauth-server))
 
 
 ### OAuth server
 
 The "OAuthServers" variable is an array containing OAuth server configurations.
-All OAuth server configuration variables are **required** and come from the OAuth server console, but **name**. That last must be set but its content is free.  
+All OAuth server configuration variables are **required** and come from the OAuth server console, except **name**. That last must be set but its content is free.  
 
 As example, one can find detailed instructions for the [Google OAuth service configuration](https://developers.google.com/identity/protocols/OAuth2/ "Google OAuth service configuration").
 
@@ -103,7 +103,7 @@ E.G.: CNRS CA proposes its certificate path at [IGC CNRS](https://igc.services.c
 The application launches a secured Web server.
 To do so, a electronic keys pair is expected to:
 
-* ensure the server identity
+* ensure server identity
 * encrypt communications
 
 To generate a self signed key pair, one can run
