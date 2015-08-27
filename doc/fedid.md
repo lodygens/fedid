@@ -23,7 +23,7 @@ This expects some external packages:
 * github.com/gorilla/mux
 * golang.org/x/oauth2
 
-One can easily installs them :
+One can easily install them :
 
 ```
 $> go get github.com/apexskier/httpauth github.com/gorilla/mux golang.org/x/oauth2 
