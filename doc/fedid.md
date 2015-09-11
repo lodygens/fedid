@@ -22,11 +22,12 @@ This expects some external packages:
 * github.com/apexskier/httpauth
 * github.com/gorilla/mux
 * golang.org/x/oauth2
+* github.com/dgrijalva/jwt-go
 
 One can easily install them :
 
 ```
-$> go get github.com/apexskier/httpauth github.com/gorilla/mux golang.org/x/oauth2 
+$> go get github.com/apexskier/httpauth github.com/gorilla/mux golang.org/x/oauth2 github.com/dgrijalva/jwt-go
 ```
 
 
