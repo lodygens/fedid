@@ -396,14 +396,43 @@ func OAuthAuthenticator(writer http.ResponseWriter, request *http.Request) {
 
 	clientResponse, err := client.Get("https://www.googleapis.com/oauth2/v2/userinfo")
 
-	logger.Debug("poeut")
 	n, err := clientResponse.Body.Read(body)
 	logger.Debug("poeut %v, %v", n, err)
 	if err == nil {
-		var user map[string]interface{}
-		err = json.Unmarshal(body[:n], &user)
-		logger.Info("user = %v", user)
-		fmt.Fprint(writer, "<p>You are logged in as ", user["email"], "</p>")
+		var userJson map[string]interface{}
+		err = json.Unmarshal(body[:n], &userJson)
+		logger.Info("user = %v", userJson)
+//		fmt.Fprint(writer, "<p>You are logged in as ", userJson["email"], "</p>")
+
+		var user httpauth.UserData
+		//
+		// next line is a type assertion, because we know the generic interface
+		// contains a string
+		// https://golang.org/doc/effective_go.html#interface_conversions
+		//
+		user.Email = userJson["email"].(string)
+		user.Username = userJson["family_name"].(string) + "#" + userJson["given_name"].(string)
+
+		password := "we don't need the password"
+
+		logger.Debug("user = %v", user)
+		err = httpAuthorizer.Register(writer, request, user, password)
+		logger.Debug("register err = %v", err)
+		err = httpAuthorizer.Login(writer, request, user.Username, password, APPSURL)
+		logger.Debug("login err = %v", err)
+		if err != nil {
+			logger.Debug ("err.Error = %v", err.Error())
+		}
+
+		if err == nil || err.Error() == "httpauth: already authenticated" {
+			logger.Debug("00")
+			http.Redirect(writer, request, APPSURL, http.StatusSeeOther)
+		} else {
+			logger.Debug("01")
+			http.Redirect(writer, request, OAUTHURL, HTTPCODE_UNAUTHORIZED)
+		}
+
+		logger.Debug("Fin")
 	}
 }
 
@@ -429,7 +458,6 @@ func OAuthenticationPage(w http.ResponseWriter, r *http.Request) {
 			url := oauthConfig.AuthCodeURL("state", oauth2.AccessTypeOffline)
 			logger.Debug("OAuth URL = %v", url)
 			fmt.Fprintf(w, "<p><a href='%v'>%v</a></p>", url, s.Name)
-			fmt.Fprintf(w, "<p><a href='%v&MYPARAM=pouet'>pour voir %v</a></p>", url, s.Name)
 		}
 	}
 }
