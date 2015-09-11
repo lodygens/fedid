@@ -230,14 +230,14 @@ func main() {
 
 	// set up routers and route handlers
 	r := mux.NewRouter()
-	//	r.HandleFunc("/", handlePage).Methods("GET") // authorized page
+	//	r.HandleFunc("/", appsPage).Methods("GET") // authorized page
 	r.HandleFunc("/logout", handleLogout)
 	r.HandleFunc(ROOTURL, X509Authenticator)
 	r.HandleFunc(OAUTHURL, OAuthenticationPage)
 	for _, s := range conf.OAuthServers {
 		r.HandleFunc(OAUTHURL + s.Name, OAuthAuthenticator)
 	}
-	r.HandleFunc(APPSURL, handlePage)
+	r.HandleFunc(APPSURL, appsPage)
 	r.HandleFunc(JWTURL, JWTAuthenticator)
 
 	server := http.Server{Addr: hostName + ":" + conf.PortNumber, TLSConfig: tlsConfig, Handler: r}
@@ -286,27 +286,30 @@ func X509Authenticator(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	logger.Info("shains = %v\n", chains)
+	logger.Debug("shains = %v\n", chains)
 
 	var user httpauth.UserData
 	user.Username = userCert.Subject.CommonName + "#" + userCert.Issuer.CommonName
 	user.Email = userCert.EmailAddresses[0]
 	password := "we don't need the password"
-	if err := httpAuthorizer.Register(writer, request, user, password); err == nil {
-		logger.Debug("%v registered", user.Email)
-		if err := httpAuthorizer.Login(writer, request, user.Username, password, "/"); err != nil && err.Error() == "already authenticated" {
-			logger.Debug("%v logged in", user.Email)
-			if err := httpAuthorizer.Authorize(writer, request, true); err != nil {
-				logger.Debug("%v authorized", user.Email)
-			}
-			http.Redirect(writer, request, APPSURL, http.StatusSeeOther)
-		} else if err != nil {
-			fmt.Println(err)
-			http.Redirect(writer, request, APPSURL, http.StatusSeeOther)
-		}
-	} else {
-		http.Redirect(writer, request, "/", http.StatusSeeOther)
+
+	err = httpAuthorizer.Register(writer, request, user, password)
+	logger.Debug("register err = %v", err)
+	err = httpAuthorizer.Login(writer, request, user.Username, password, APPSURL)
+	logger.Debug("login err = %v", err)
+	if err != nil {
+		logger.Debug ("err.Error = %v", err.Error())
 	}
+
+	if err == nil || err.Error() == "httpauth: already authenticated" {
+		logger.Debug("00")
+		http.Redirect(writer, request, APPSURL, http.StatusSeeOther)
+	} else {
+		logger.Debug("01")
+		http.Redirect(writer, request, OAUTHURL, HTTPCODE_UNAUTHORIZED)
+	}
+
+	logger.Debug("Fin")
 }
 
 /**
@@ -470,8 +473,11 @@ func JWTAuthenticator(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func handlePage(writer http.ResponseWriter, request *http.Request) {
-	if err := httpAuthorizer.Authorize(writer, request, true); err != nil {
+func appsPage(writer http.ResponseWriter, request *http.Request) {
+	logger := NewPrefixed("AppsPage")
+	err := httpAuthorizer.Authorize(writer, request, true)
+	logger.Debug("err = %v", err)
+	if err != nil {
 		fmt.Println(err)
 		http.Redirect(writer, request, "/", http.StatusSeeOther)
 		return
