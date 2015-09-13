@@ -27,6 +27,16 @@ by the European Community’s Seventh Framework Programme (Capacities)
 Grant Agreement H2020-IA-644925, started in Jan 2015
 
 
+Installation
+============
+
+Installing `fedid` is done via `go get`:
+
+```sh
+$ go get github.com/lodygens/fedid
+```
+ 
+
 Documentation
 =============
 

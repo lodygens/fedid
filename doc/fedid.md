@@ -24,10 +24,10 @@ This expects some external packages:
 * golang.org/x/oauth2
 * github.com/dgrijalva/jwt-go
 
-One can easily install them :
+They are automatically installed with this software
 
-```
-$> go get github.com/apexskier/httpauth github.com/gorilla/mux golang.org/x/oauth2 github.com/dgrijalva/jwt-go
+```sh
+$> go get github.com/lodygens/fedid
 ```
 
 
