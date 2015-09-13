@@ -27,7 +27,7 @@ This expects some external packages:
 They are automatically installed with this software
 
 ```sh
-$> go get github.com/lodygens/fedid
+$ go get github.com/lodygens/fedid
 ```
 
 
