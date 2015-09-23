@@ -63,7 +63,8 @@ var caChannel chan *x509.CertPool
 /**
  * This stores channels to transmit OAuth configuration to all goroutines
  */
-var oauthConfigurationChannels map[string]chan *oauth2.Config
+//var oauthConfigurationChannels map[string]chan *oauth2.Config
+var oauthConfigurationChannels map[string]chan *OAuth2Config
 
 var conf Configuration
 
@@ -74,6 +75,7 @@ var (
 	backendfile    = "auth.gob"
 )
 
+// The Configuration structure maps the configuration file
 type Configuration struct {
         LoggerLevel string
         CACertPath  string
@@ -83,6 +85,7 @@ type Configuration struct {
         OAuthServers []OAuthServer
 }
 
+// The OAuthServer structure maps OAuthServers from the configuration file
 type OAuthServer struct {
     Name       string
     Clientid     string
@@ -90,6 +93,7 @@ type OAuthServer struct {
     RedirectUrl  string
     AuthUrl      string
     TokenUrl     string
+    ApiUrl       string
 }
 
 /**
@@ -144,7 +148,8 @@ func main() {
 		logger.Fatal("server key path is not set")
 	}
 
-	oauthConfigurationChannels = make(map[string]chan *oauth2.Config)
+//	oauthConfigurationChannels = make(map[string]chan *oauth2.Config)
+	oauthConfigurationChannels = make(map[string]chan *OAuth2Config)
 	hostName := GetLocalHostName()
 
 	for _, s := range conf.OAuthServers {
@@ -154,7 +159,8 @@ func main() {
 			len(s.Clientsecret) < 1 ||
 			len(s.RedirectUrl) < 1 ||
 			len(s.AuthUrl) < 1 ||
-			len(s.TokenUrl) < 1 {
+			len(s.TokenUrl) < 1 ||
+			len(s.ApiUrl) < 1 {
 
 			logger.Warn("Ignoring %v : incorrect configuration", s.Name)
 			continue
@@ -163,13 +169,15 @@ func main() {
 		// start OAuth config manager
 		//
 		logger.Info("s.Name = %v", s.Name)
-		oauthConfigurationChannels[s.Name] = make(chan *oauth2.Config)
+//		oauthConfigurationChannels[s.Name] = make(chan *oauth2.Config)
+		oauthConfigurationChannels[s.Name] = make(chan *OAuth2Config)
 		go OAuthConfigurationManager(
 			s.Clientid,
 			s.Clientsecret,
 			s.RedirectUrl,
 			s.AuthUrl,
 			s.TokenUrl,
+			s.ApiUrl,
 			oauthConfigurationChannels[s.Name])
 	}
 
@@ -364,8 +372,14 @@ func OAuthAuthenticator(writer http.ResponseWriter, request *http.Request) {
 	oauthConf := <-oauthConfigurationChannels[oauthServerName]
 	logger.Debug("config = %v", oauthConf)
 
+	if oauthConf == nil {
+		logger.Warn("No OAuth conf; redirect to OAuth page")
+		http.Redirect(writer, request, OAUTHURL, HTTPCODE_UNAUTHORIZED)
+		return
+	}
+	
 	code := p["code"][0]
-	token, err := oauthConf.Exchange(oauth2.NoContext, code)
+	token, err := oauthConf.Config.Exchange(oauth2.NoContext, code)
 	if err != nil {
 		logger.Warn(err.Error())
 		http.Redirect(writer, request, OAUTHURL, HTTPCODE_UNAUTHORIZED)
@@ -378,13 +392,7 @@ func OAuthAuthenticator(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	if oauthConf == nil {
-		logger.Warn("No OAuth conf; redirect to OAuth page")
-		http.Redirect(writer, request, OAUTHURL, HTTPCODE_UNAUTHORIZED)
-		return
-	}
-	
-	client := oauthConf.Client(oauth2.NoContext, token)
+	client := oauthConf.Config.Client(oauth2.NoContext, token)
 
 	if client == nil {
 		logger.Warn("No OAuth client; redirect to OAuth page")
@@ -394,7 +402,8 @@ func OAuthAuthenticator(writer http.ResponseWriter, request *http.Request) {
 
 	var body = make([]byte, 1024)
 
-	clientResponse, err := client.Get("https://www.googleapis.com/oauth2/v2/userinfo")
+//	clientResponse, err := client.Get("https://www.googleapis.com/oauth2/v2/userinfo")
+	clientResponse, err := client.Get(oauthConf.ApiUrl)
 
 	n, err := clientResponse.Body.Read(body)
 	logger.Debug("poeut %v, %v", n, err)
@@ -455,7 +464,7 @@ func OAuthenticationPage(w http.ResponseWriter, r *http.Request) {
 		if oauthConfigurationChannels[s.Name] != nil {
 			oauthConfig := <-oauthConfigurationChannels[s.Name]
 			logger.Debug("OAuthconf = %v", oauthConfig)
-			url := oauthConfig.AuthCodeURL("state", oauth2.AccessTypeOffline)
+			url := oauthConfig.Config.AuthCodeURL("state", oauth2.AccessTypeOffline)
 			logger.Debug("OAuth URL = %v", url)
 			fmt.Fprintf(w, "<p><a href='%v'>%v</a></p>", url, s.Name)
 		}

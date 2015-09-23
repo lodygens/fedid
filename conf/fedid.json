@@ -11,7 +11,8 @@
 			"clientsecret" : "",
 			"redirecturl"  : "",
 			"authurl"      : "https://accounts.google.com/o/oauth2/auth",
-			"tokenurl"     : "https://accounts.google.com/o/oauth2/token"
+			"tokenurl"     : "https://accounts.google.com/o/oauth2/token",
+			"apiurl"       : "https://www.googleapis.com/oauth2/v2/userinfo"
 		}
 	]
 }

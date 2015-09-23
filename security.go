@@ -32,6 +32,12 @@ import (
  */
 const OAUTH_IDTOKEN_NAME = "id_token"
 
+// This contains the OAuth2 configuration and the API to retreive expected 
+// informations from OAuth server (mail, login etc.)
+type OAuth2Config struct {
+	Config    *oauth2.Config
+	ApiUrl    string
+}
 
 /**
  * This creates a new certificates pool that can be used to validate user
@@ -68,16 +74,19 @@ func CaCertPoolManager(path string, c chan *x509.CertPool) {
  * @param c is the channel to write to
  * @see #PopulateCertPool(string)
  */
-func OAuthConfigurationManager(clientid, clientsecret, redirecturl, authurl, tokenurl string, c chan *oauth2.Config) {
+//func OAuthConfigurationManager(clientid, clientsecret, redirecturl, authurl, tokenurl, apiurl string, c chan *oauth2.Config) {
+func OAuthConfigurationManager(clientid, clientsecret, redirecturl, authurl, tokenurl, apiurl string, c chan *OAuth2Config) {
 
 	var logger = NewPrefixed("security#OAuthConfigurationManager")
 
-	oauthConfig := new (oauth2.Config)
-	oauthConfig.ClientID     = clientid
-	oauthConfig.ClientSecret = clientsecret
-	oauthConfig.Scopes       = []string{"email"}
-	oauthConfig.RedirectURL  = redirecturl
-	oauthConfig.Endpoint     = oauth2.Endpoint{
+	oauthConfig := new (OAuth2Config)
+	oauthConfig.ApiUrl  = apiurl
+	oauthConfig.Config = new (oauth2.Config)
+	oauthConfig.Config.ClientID     = clientid
+	oauthConfig.Config.ClientSecret = clientsecret
+	oauthConfig.Config.Scopes       = []string{"email"}
+	oauthConfig.Config.RedirectURL  = redirecturl
+	oauthConfig.Config.Endpoint     = oauth2.Endpoint{
 			AuthURL:  authurl,
 			TokenURL: tokenurl,
 		}
